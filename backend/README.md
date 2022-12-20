@@ -33,6 +33,9 @@ This project is licensed under the terms of the MIT license.
 - 
 
 
+- Generate a secret key by using this commnand ; `openssl rand -hex 32`
+
+
 
 
 

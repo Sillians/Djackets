@@ -3,6 +3,9 @@ from pydantic import EmailStr, constr, validator
 from backend.app.schemas import CoreModel, DateTimeModelMixin, IDModelMixin
 from typing import Optional
 
+from datetime import datetime, timedelta
+from backend.app.core.config import settings
+from backend.users.token import AccessToken
 
 # simple check for valid username
 def validate_username(username: str) -> str:
@@ -37,6 +40,9 @@ class UserCreate(CoreModel):
     def username_is_valid(cls, username: str) -> str:
         return validate_username(username)
 
+    class Config:
+        orm_mode = True
+
 
 class UserUpdate(CoreModel):
     """
@@ -55,8 +61,11 @@ class UserPasswordUpdate(CoreModel):
     password: constr(min_length=7, max_length=100)
     salt: str
 
+    class Config:
+        orm_mode = True
 
-class UserInDB(IDModelMixin, DateTimeModelMixin, UserBase):
+
+class UserInDB(DateTimeModelMixin, UserBase):
     """
     Add in id, created_at, updated_at, and user's password and salt
     """
@@ -64,6 +73,25 @@ class UserInDB(IDModelMixin, DateTimeModelMixin, UserBase):
     password: constr(min_length=7, max_length=100)
     salt: str
 
+    class Config:
+        orm_mode = True
+
 
 class UserPublic(DateTimeModelMixin, UserBase):
-    pass
+    access_token: Optional[AccessToken]
+
+    class Config:
+        orm_mode = True
+
+
+class UserLogin(CoreModel):
+    """
+    username and password are required for logging in the user
+    """
+
+    username: str
+    password: constr(min_length=7, max_length=100)
+
+    @validator("username", pre=True)
+    def username_is_valid(cls, username: str) -> str:
+        return validate_username(username)

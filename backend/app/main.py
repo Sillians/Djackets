@@ -10,22 +10,28 @@ sys.path.append("..")  # fixing parent folder import error
 
 from backend.users.api.controller import router as user_router
 
+sys.path.append("..")
 
-def get_application():
-    _app = FastAPI(title=settings.PROJECT_NAME)
-
-    _app.add_middleware(
-        CORSMiddleware,
-        allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-
-    db.init_app(_app)
-    _app.include_router(user_router, prefix="/users")
-
-    return _app
+app = FastAPI(title=settings.PROJECT_NAME)
+db.init_app(app)
 
 
-app = get_application()
+@app.on_event("startup")
+async def startup():
+    print("app started")
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    print("SHUTDOWN")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(user_router, prefix="/users")
