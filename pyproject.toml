@@ -16,6 +16,7 @@ python-dotenv = "^0.21.0"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 pydantic = {extras = ["dotenv"], version = "^1.10.2"}
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+pandas = "^1.5.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

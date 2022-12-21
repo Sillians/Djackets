@@ -11,7 +11,25 @@ This project is licensed under the terms of the MIT license.
 
 - `Link 2` : https://python-gino.org/docs/en/master/tutorials/fastapi.html
 
+- `Link 3` : https://python-gino.org/docs/en/master/tutorials/fastapi.html
 
+- `Link 4` : https://www.jeffastor.com/blog/designing-a-robust-user-model-in-a-fastapi-app
+
+- `Link 5` : https://www.jeffastor.com/blog/pairing-a-postgresql-db-with-your-dockerized-fastapi-app
+
+- `Link 6` : https://www.jeffastor.com/blog/authenticating-users-in-fastapi-with-jwt-tokens
+
+- `Link 7` : https://github.com/ShahriyarR/azepug
+
+- `Link 8` : https://www.jeffastor.com/app/blog/
+
+- `Link 9` : 
+
+
+
+- `poetry shell`
+- `poetry add <package-name>`
+- 
 
 
 ### Running the python files

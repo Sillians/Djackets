@@ -1,10 +1,19 @@
 from fastapi import APIRouter, status, Body
 from fastapi.responses import JSONResponse
-from ..schemas import UserCreate, UserInDB, UserPublic, UserLogin
+from backend.users.schemas import (
+    UserBase,
+    UserCreate,
+    UserInDB,
+    UserLogin,
+    UserPublic,
+    UserUpdate,
+    UserPasswordUpdate,
+)
 from backend.users import auth_service
-from backend.users.token import AccessToken
-from ..crud import get_user_by_username
 from backend.users.crud import get_user_by_username
+from backend.users.token import AccessToken
+
+from ..crud import get_user_by_username
 
 router = APIRouter()
 

@@ -1,18 +1,18 @@
-from gino.ext.starlette import Gino
-from app.core.config import settings
-from .core.config import settings
+# from gino.ext.starlette import Gino
+# from app.core.config import settings
+# from .core.config import settings
 
 
-# db = Gino(dsn=settings.DATABASE_URI)
+# # db = Gino(dsn=settings.DATABASE_URI)
 
-db: Gino = Gino(
-    dsn=settings.DATABASE_URI,
-    pool_min_size=3,
-    pool_max_size=20,
-    retry_limit=1,
-    retry_interval=1,
-    ssl=None,
-)
+# db: Gino = Gino(
+#     dsn=settings.DATABASE_URI,
+#     pool_min_size=3,
+#     pool_max_size=20,
+#     retry_limit=1,
+#     retry_interval=1,
+#     ssl=None,
+# )
 
 
 # from sqlalchemy import create_engine
